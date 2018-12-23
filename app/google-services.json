@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "97500056533",
+    "firebase_url": "https://my-chef-368f5.firebaseio.com",
+    "project_id": "my-chef-368f5",
+    "storage_bucket": "my-chef-368f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97500056533:android:c4d9717d5da3ffee",
+        "android_client_info": {
+          "package_name": "com.soulkitchen.serifenuruysal.mychef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97500056533-tihjle78l023g33gm193ak8jj9dfbf1g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.soulkitchen.serifenuruysal.mychef",
+            "certificate_hash": "31fac2109684cf88e2103f674ce6dd3c7c47e7c2"
+          }
+        },
+        {
+          "client_id": "97500056533-2pnnjffmsl5i03ias003oqvplo5vh28v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH9XJ5PwSW0i__5RUNJs_hTMly2R59hfg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97500056533-2pnnjffmsl5i03ias003oqvplo5vh28v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
