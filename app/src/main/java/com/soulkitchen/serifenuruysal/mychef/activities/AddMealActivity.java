@@ -48,6 +48,7 @@ public class AddMealActivity extends AppCompatActivity implements GoogleMap.OnMa
         setContentView(R.layout.activity_add_meal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDatabase = FirebaseFirestore.getInstance();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -65,7 +66,7 @@ public class AddMealActivity extends AppCompatActivity implements GoogleMap.OnMa
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                if(mealCount.getText()==null||mealName.getText()==null||mealDescription.getText()==null||mealOwner.getText()==null||mealPrice.getText()==null){
+                if(mealCount.getText()==null||mealName.getText()==null||mealDescription.getText()==null||mealOwner.getText()==null||mealPrice.getText()==null||"".equals(mealPrice.getText().toString())||"".equals(mealCount.getText().toString())){
                     Snackbar.make(view, "Lutfen butun alanlari eksiksiz doldurunuz!", Snackbar.LENGTH_LONG)
                             .setAction("Uyari", null).show();
                     return;
@@ -107,6 +108,9 @@ public class AddMealActivity extends AppCompatActivity implements GoogleMap.OnMa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.getUiSettings().setAllGesturesEnabled(true);
+        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
         mMap.setOnMarkerDragListener(this);
 
 
@@ -119,7 +123,7 @@ public class AddMealActivity extends AppCompatActivity implements GoogleMap.OnMa
             Location myLocation = Utils.getCurrentLocation(this);
             if (myLocation != null) {
                 LatLng userLocation = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 12), 1500, null);
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15), 1500, null);
                 MarkerOptions marker = new MarkerOptions().position(userLocation).title("Şefin Mutfagını Haritadan surukleyip birakabilirsin!");
                 BitmapDescriptor locationMarkerIcon = Utils.getBitmapFromVector(getApplicationContext(), R.drawable.ic_baker,
                         ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));

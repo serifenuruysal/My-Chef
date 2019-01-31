@@ -50,8 +50,8 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
         img.setImageResource(imageId);
 
         hotel_tv.setText("Porsiyon adedi: "+infoWindowData.getCount());
-        food_tv.setText("Ucret: "+infoWindowData.getPrice()+" TL");
-        transport_tv.setText("Sef: "+infoWindowData.getMealOwner());
+        food_tv.setText("Ücret: "+infoWindowData.getPrice()+" TL");
+        transport_tv.setText("Şef: "+infoWindowData.getMealOwner());
 
         return view;
     }

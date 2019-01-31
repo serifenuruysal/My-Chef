@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.soulkitchen.serifenuruysal.mychef.adapters.CustomInfoWindowGoogleMap;
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mMap.getUiSettings().setAllGesturesEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setOnMarkerClickListener(this);
         mMap.setOnInfoWindowClickListener(this);
@@ -133,9 +134,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
                     Manifest.permission.ACCESS_FINE_LOCATION, false);
         }
+        Query capitalCities = mDatabase.collection("Menu").whereEqualTo("geoLocation", true);
 
         mDatabase.collection("Menu")
                 .get()
+
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -217,6 +220,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onInfoWindowClick(Marker marker) {
 //        Toast.makeText(this, "Click Info Window", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(MainActivity.this,ProfilPageActivity.class);
+        Meal selectedMeal = (Meal) marker.getTag();
+        intent.putExtra("MARKER",selectedMeal);
+        startActivity(intent);
     }
 
     @Override
@@ -233,8 +240,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onMarkerClick(Marker marker) {
         float zIndex = marker.getZIndex() + 1.0f;
         marker.setZIndex(zIndex);
-        Toast.makeText(this, marker.getTitle() + " z-index set to " + zIndex,
-                Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, marker.getTitle() + " z-index set to " + zIndex,
+//                Toast.LENGTH_SHORT).show();
         return false;
     }
 
